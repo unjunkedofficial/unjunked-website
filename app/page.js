@@ -4,21 +4,29 @@ export default function Page() {
       name: "Pistachio & Cashew Cookies",
       desc: "Creamy smooth and perfectly balanced. The classic nut duo.",
       badge: "300g",
+      img: "/cashew.jpg",
+      alt: "Unjunked Pistachio & Cashew Cookies box",
     },
     {
       name: "Masala Chai Cookies",
       desc: "A warm hug of spices with the perfect crunch. Made with real chai spices.",
       badge: "300g",
+      img: "/masala.jpg",
+      alt: "Unjunked Masala Chai Cookies box",
     },
     {
       name: "Cardamom Butterscotch Cookies (with Almonds)",
       desc: "Butterscotch meets bold cardamom. Pure nutty delight.",
       badge: "300g",
+      img: "/cardamom.jpg",
+      alt: "Unjunked Cardamom Butterscotch Cookies box",
     },
     {
       name: "Mango & Saffron Cookies",
       desc: "Crafted with Alphonso mango & real saffron. Creamy, rich, vibrant.",
       badge: "300g",
+      img: "/mango.jpg",
+      alt: "Unjunked Mango & Saffron Cookies box",
     },
   ];
 
@@ -27,7 +35,9 @@ export default function Page() {
       {/* Header */}
       <header className="header">
         <div className="container headerInner">
-          <div className="brand">Un<span className="leaf">•</span>Junked</div>
+          <div className="brand">
+            Un<span className="leaf">•</span>Junked
+          </div>
 
           <nav className="nav">
             <a href="#shop">Shop</a>
@@ -35,7 +45,9 @@ export default function Page() {
             <a href="#founders">Founders</a>
           </nav>
 
-          <a className="btnPrimary" href="#shop">Shop $40 Bundle</a>
+          <a className="btnPrimary" href="#shop">
+            Shop $40 Bundle
+          </a>
         </div>
       </header>
 
@@ -45,16 +57,22 @@ export default function Page() {
           <div>
             <p className="eyebrow">GLOBAL FLAVOURS, ZERO JUNK</p>
             <h1 className="h1">
-              Reinventing Cookies — <span className="muted">Without the Junk.</span>
+              Reinventing Cookies —{" "}
+              <span className="muted">Without the Junk.</span>
             </h1>
             <p className="lead">
-              Premium Indian-inspired cookies made with real ingredients.
-              No palm oil. No artificial preservatives or colours. Whole wheat flour. Eggless.
+              Premium Indian-inspired cookies made with real ingredients. No palm
+              oil. No artificial preservatives or colours. Whole wheat flour.
+              Eggless.
             </p>
 
             <div className="ctaRow">
-              <a className="btnPrimary" href="#shop">Build your $40 box</a>
-              <a className="btnGhost" href="#transparency">See transparency</a>
+              <a className="btnPrimary" href="#shop">
+                Build your $40 box
+              </a>
+              <a className="btnGhost" href="#transparency">
+                See transparency
+              </a>
             </div>
 
             <div className="trustRow">
@@ -75,8 +93,8 @@ export default function Page() {
             </ul>
             <div className="divider" />
             <p className="small muted">
-              Additives are not for you — they’re for shelf life and bottom lines.
-              We keep it clean, because you deserve better.
+              Additives are not for you — they’re for shelf life and bottom
+              lines. We keep it clean, because you deserve better.
             </p>
           </div>
         </div>
@@ -103,13 +121,19 @@ export default function Page() {
           <div className="grid">
             {products.map((p) => (
               <div className="product" key={p.name}>
+                <div className="productImgWrap">
+                  <img className="productImg" src={p.img} alt={p.alt} />
+                </div>
+
                 <div className="productTop">
                   <div className="productName">{p.name}</div>
                   <div className="badge">{p.badge}</div>
                 </div>
+
                 <div className="productDesc">{p.desc}</div>
+
                 <a className="btnGhost full" href="#checkout">
-                  Add to Bundle (placeholder)
+                  Add to Bundle
                 </a>
               </div>
             ))}
@@ -118,12 +142,15 @@ export default function Page() {
           <div className="noteRow">
             <div className="note">
               <div className="noteTitle">Bundle rules</div>
-              <div className="small muted">Your box contains exactly 4 items. Mix and match any flavours.</div>
+              <div className="small muted">
+                Your box contains exactly 4 items. Mix and match any flavours.
+              </div>
             </div>
             <div className="note">
               <div className="noteTitle">Premium, but honest</div>
               <div className="small muted">
-                Price includes ingredients, production, packaging, and logistics to your door.
+                Price includes ingredients, production, packaging, and logistics
+                to your door.
               </div>
             </div>
           </div>
@@ -160,8 +187,8 @@ export default function Page() {
             <div className="card">
               <div className="cardTitle">Our point of view</div>
               <p className="small muted">
-                Additives are not for you, but for their bottom line.
-                We built Unjunked to keep ingredients simple and flavour real.
+                Additives are not for you, but for their bottom line. We built
+                Unjunked to keep ingredients simple and flavour real.
               </p>
             </div>
           </div>
@@ -176,33 +203,57 @@ export default function Page() {
             <h2 className="h2">Built by family. Ingredient-obsessed.</h2>
 
             <p className="sublead">
-              I grew up around real food. Real ingredients. Real flavour.
-              But when I looked at most cookies on shelves today, I saw additives and fillers designed to protect margins — not people.
+              I grew up around real food. Real ingredients. Real flavour. But
+              when I looked at most cookies on shelves today, I saw additives
+              and fillers designed to protect margins — not people.
             </p>
 
             <p className="sublead">
-              Unjunked is simple. If it doesn’t belong in your kitchen, it doesn’t belong in our cookies.
+              Unjunked is simple. If it doesn’t belong in your kitchen, it
+              doesn’t belong in our cookies.
             </p>
 
             <p className="signature">— Andy Ghalley, Co-Founder & CEO</p>
           </div>
 
           <div className="cards">
-            <div className="card">
+            <div className="card darkCard">
               <div className="cardTitle">Andy Ghalley</div>
-              <p className="small muted">Co-Founder & CEO</p>
+              <p className="small mutedOnDark">Co-Founder & CEO</p>
             </div>
-            <div className="card">
+            <div className="card darkCard">
               <div className="cardTitle">Chitwan Ghalley</div>
-              <p className="small muted">Co-Founder & President</p>
+              <p className="small mutedOnDark">Co-Founder & President</p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="footer">
         <div className="container footerInner">
-          <div className="brand">Un<span className="leaf">•</span>Junked</div>
+          <div>
+            <div className="brand">
+              Un<span className="leaf">•</span>Junked
+            </div>
+            <div className="small muted">
+              Contact:{" "}
+              <a href="mailto:info@ghalleyholdings.com">
+                info@ghalleyholdings.com
+              </a>
+            </div>
+            <div className="small muted">
+              Instagram:{" "}
+              <a
+                href="https://instagram.com/unjunked.official"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @unjunked.official
+              </a>
+            </div>
+          </div>
+
           <div className="small muted">© {new Date().getFullYear()} Unjunked</div>
         </div>
       </footer>
