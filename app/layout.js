@@ -1,31 +1,50 @@
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-export const metadata = {
-  title: "Unjunked | Cookies. Without the junk.",
-  description:
-    "Premium clean-ingredient cookies. Real flavors. No artificial nonsense.",
-  metadataBase: new URL("https://unjunked.com"),
-  openGraph: {
-    title: "Unjunked | Cookies. Without the junk.",
-    description:
-      "Premium clean-ingredient cookies. Real flavors. No artificial nonsense.",
-    url: "https://unjunked.com",
-    siteName: "Unjunked",
-    type: "website",
-  },
-  robots: { index: true, follow: true },
-};
+:root {
+  --bg: 255 255 255;
+  --fg: 17 17 17;
+}
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        <main className="min-h-[70vh]">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-4;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition;
+}
+
+.btn-primary {
+  @apply bg-black text-white hover:opacity-90;
+}
+
+.btn-ghost {
+  @apply border border-black/15 bg-white text-black hover:bg-black/5;
+}
+
+.card {
+  @apply rounded-3xl border border-black/10 bg-white shadow-sm;
+}
+
+.muted {
+  @apply text-black/60;
+}
+
+.h1 {
+  @apply text-4xl font-extrabold tracking-tight sm:text-5xl;
+}
+
+.h2 {
+  @apply text-2xl font-bold tracking-tight sm:text-3xl;
 }
