@@ -1,6 +1,7 @@
 export default function Page() {
   return (
     <main id="top">
+      {/* HEADER */}
       <header className="header">
         <div className="container headerInner">
           <div className="brand">Unjunked</div>
@@ -17,6 +18,7 @@ export default function Page() {
         </div>
       </header>
 
+      {/* HERO */}
       <section className="container section">
         <div className="heroCard">
           <div className="heroMedia">
@@ -33,13 +35,18 @@ export default function Page() {
             </p>
 
             <div className="ctaRow">
-              <a className="btnPrimary" href="#shop">Build Your $40 Box</a>
-              <a className="btnGhost" href="#ingredients">See Ingredients</a>
+              <a className="btnPrimary" href="#shop">
+                Build Your $40 Box
+              </a>
+              <a className="btnGhost" href="#ingredients">
+                See Ingredients
+              </a>
             </div>
           </div>
         </div>
       </section>
 
+      {/* SOCIAL PROOF */}
       <section className="container section">
         <div className="strip">
           <div className="stripLeft">⭐ 4.8/5 from 1,200+ customers</div>
@@ -51,6 +58,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* WHY */}
       <section id="founders" className="container section">
         <div className="twoCol">
           <div>
@@ -89,6 +97,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* SHOP */}
       <section id="shop" className="container section">
         <div className="bundleHead">
           <div>
@@ -160,37 +169,65 @@ export default function Page() {
             <div className="stickyTitle">$40 — Shipping Included</div>
             <div className="stickySub">Checkout unlocks at 4 selected</div>
           </div>
-          <button className="btn btnDisabled" disabled>Checkout</button>
+          <button className="btn btnDisabled" disabled>
+            Checkout
+          </button>
         </div>
       </section>
 
+      {/* INGREDIENTS */}
       <section id="ingredients" className="container section">
         <p className="eyebrow">INGREDIENT TRANSPARENCY</p>
         <h2 className="h2">Real ingredients. No filler logic.</h2>
 
         <div className="grid5">
-          {[
-            ["Alphonso Mango", "Bright, real fruit flavour."],
-            ["Real Saffron", "Aromatic depth."],
-            ["Stone-ground Cardamom", "Fresh lift."],
-            ["Whole Wheat Flour", "Whole grain texture."],
-            ["Premium Butter", "Rich body."],
-          ].map(([t, d]) => (
-            <div className="mini" key={t}>
-              <div className="dot" />
-              <div className="cardTitle">{t}</div>
-              <div className="cardDesc">{d}</div>
-            </div>
-          ))}
+          <div className="mini">
+            <div className="dot" />
+            <div className="cardTitle">Alphonso Mango</div>
+            <div className="cardDesc">Bright, real fruit flavour.</div>
+          </div>
+          <div className="mini">
+            <div className="dot" />
+            <div className="cardTitle">Real Saffron</div>
+            <div className="cardDesc">Aromatic depth.</div>
+          </div>
+          <div className="mini">
+            <div className="dot" />
+            <div className="cardTitle">Stone-ground Cardamom</div>
+            <div className="cardDesc">Fresh lift.</div>
+          </div>
+          <div className="mini">
+            <div className="dot" />
+            <div className="cardTitle">Whole Wheat Flour</div>
+            <div className="cardDesc">Whole grain texture.</div>
+          </div>
+          <div className="mini">
+            <div className="dot" />
+            <div className="cardTitle">Premium Butter</div>
+            <div className="cardDesc">Rich body.</div>
+          </div>
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="footer">
         <div className="container footerInner">
           <div>
             <div className="brand">Unjunked</div>
-            <div className="footLine">Email: <a href="mailto:info@ghalleyholdings.com">info@ghalleyholdings.com</a></div>
-            <div className="footLine">Instagram: <a href="https://instagram.com/unjunked.official" target="_blank" rel="noreferrer">@unjunked.official</a></div>
+            <div className="footLine">
+              Email:{" "}
+              <a href="mailto:info@ghalleyholdings.com">info@ghalleyholdings.com</a>
+            </div>
+            <div className="footLine">
+              Instagram:{" "}
+              <a
+                href="https://instagram.com/unjunked.official"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @unjunked.official
+              </a>
+            </div>
           </div>
 
           <div className="footLinks">
