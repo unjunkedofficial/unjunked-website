@@ -1,465 +1,211 @@
-/* app/globals.css */
-:root{
-  --bg:#fbf6ee;
-  --ink:#101010;
-  --muted:#5f6368;
-  --border:#eadfce;
-  --cream:#fff3e7;
-  --mango:#f4a261;
-  --dark:#171717;
-  --glass:#ffffffcc;
-  --shadow:0 24px 70px rgba(0,0,0,.12);
-  --shadowSoft:0 18px 40px rgba(0,0,0,.10);
-  --radius:24px;
-}
+export default function Page() {
+  const products = [
+    {
+      name: "Pistachio & Cashew Cookies",
+      desc: "Creamy smooth and perfectly balanced. The classic nut duo.",
+      badge: "300g",
+    },
+    {
+      name: "Masala Chai Cookies",
+      desc: "A warm hug of spices with the perfect crunch. Made with real chai spices.",
+      badge: "300g",
+    },
+    {
+      name: "Cardamom Butterscotch Cookies (with Almonds)",
+      desc: "Butterscotch meets bold cardamom. Pure nutty delight.",
+      badge: "300g",
+    },
+    {
+      name: "Mango & Saffron Cookies",
+      desc: "Crafted with Alphonso mango & real saffron. Creamy, rich, vibrant.",
+      badge: "300g",
+    },
+  ];
 
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  background:var(--bg);
-  color:var(--ink);
-  overflow-x:hidden;
-}
-a{ color:inherit; text-decoration:none; }
-img{ display:block; }
+  return (
+    <>
+      {/* Header */}
+      <header className="header">
+        <div className="container headerInner">
+          <div className="brand">Un<span className="leaf">•</span>Junked</div>
 
-.container{
-  width:min(1180px, calc(100% - 36px));
-  margin:0 auto;
-}
+          <nav className="nav">
+            <a href="#shop">Shop</a>
+            <a href="#transparency">Transparency</a>
+            <a href="#founders">Founders</a>
+          </nav>
 
-/* NAV */
-.navbar{
-  position:sticky; top:0; z-index:60;
-  background:rgba(251,246,238,.90);
-  backdrop-filter: blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.navInner{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:14px; padding:14px 0;
-}
-.brand{ display:flex; align-items:center; gap:10px; }
-.brandMark{
-  width:40px; height:40px; border-radius:16px;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:950;
-  background:linear-gradient(135deg,#fff,var(--cream));
-  border:1px solid var(--border);
-  box-shadow:0 14px 36px rgba(0,0,0,.10);
-}
-.brandText .name{ font-weight:980; font-size:14px; }
-.brandText .tag{ margin-top:2px; font-size:12px; color:var(--muted); }
+          <a className="btnPrimary" href="#shop">Shop $40 Bundle</a>
+        </div>
+      </header>
 
-.navLinks{
-  display:flex; gap:16px; flex-wrap:wrap; align-items:center;
-  color:var(--muted);
-  font-weight:800;
-  font-size:13.5px;
-}
-.navLinks a{ transition:.18s ease; }
-.navLinks a:hover{ color:var(--ink); }
+      {/* Hero */}
+      <section className="hero">
+        <div className="container heroGrid">
+          <div>
+            <p className="eyebrow">GLOBAL FLAVOURS, ZERO JUNK</p>
+            <h1 className="h1">
+              Reinventing Cookies — <span className="muted">Without the Junk.</span>
+            </h1>
+            <p className="lead">
+              Premium Indian-inspired cookies made with real ingredients.
+              No palm oil. No artificial preservatives or colours. Whole wheat flour. Eggless.
+            </p>
 
-.navCtas{ display:flex; gap:10px; flex-wrap:wrap; }
+            <div className="ctaRow">
+              <a className="btnPrimary" href="#shop">Build your $40 box</a>
+              <a className="btnGhost" href="#transparency">See transparency</a>
+            </div>
 
-/* BUTTONS */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:950;
-  font-size:14px;
-  border:1px solid transparent;
-  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-  user-select:none;
-}
-.btnPrimary{
-  background:var(--dark);
-  color:#fff;
-  box-shadow:0 16px 34px rgba(0,0,0,.20);
-}
-.btnPrimary:hover{ transform:translateY(-2px); box-shadow:0 22px 44px rgba(0,0,0,.26); }
-.btnGhost{
-  background:rgba(255,255,255,.78);
-  border:1px solid var(--border);
-  color:var(--ink);
-}
-.btnGhost:hover{ transform:translateY(-2px); box-shadow:var(--shadowSoft); }
+            <div className="trustRow">
+              <div className="pill">Shipping included</div>
+              <div className="pill">Transparent pricing</div>
+              <div className="pill">Real ingredients</div>
+            </div>
+          </div>
 
-.chip{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.72);
-  font-weight:900;
-  font-size:12px;
-}
-.dot{
-  width:10px; height:10px; border-radius:999px;
-  background:linear-gradient(135deg,var(--mango), #ffd6b2);
-}
+          <div className="card">
+            <div className="cardTitle">The Unjunked Promise</div>
+            <ul className="list">
+              <li>Eggless</li>
+              <li>No palm oil</li>
+              <li>Nothing artificial</li>
+              <li>Whole grain goodness</li>
+              <li>Handmade with love</li>
+            </ul>
+            <div className="divider" />
+            <p className="small muted">
+              Additives are not for you — they’re for shelf life and bottom lines.
+              We keep it clean, because you deserve better.
+            </p>
+          </div>
+        </div>
+      </section>
 
-/* HERO */
-.hero{
-  position:relative;
-  padding:56px 0 18px;
-  border-bottom:1px solid var(--border);
-  background:
-    radial-gradient(1000px 560px at 10% 10%, rgba(244,162,97,.28), transparent 60%),
-    radial-gradient(900px 520px at 90% 0%, rgba(255,243,231,.95), transparent 60%),
-    radial-gradient(800px 560px at 60% 120%, rgba(244,162,97,.18), transparent 60%);
-}
-.heroGrid{
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap:26px;
-  align-items:start;
-}
-.h1{
-  margin:0;
-  font-size: clamp(40px, 4.6vw, 66px);
-  line-height:.98;
-  letter-spacing:-1.4px;
-  font-weight:1000;
-}
-.sub{
-  margin-top:14px;
-  color:var(--muted);
-  font-size:16.5px;
-  line-height:1.75;
-  max-width:590px;
-}
-.pills{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-.pill{
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.72);
-  font-weight:900;
-  font-size:12px;
-  transition: transform .18s ease;
-}
-.pill:hover{ transform:translateY(-2px); }
+      {/* Shop */}
+      <section className="section" id="shop">
+        <div className="container">
+          <div className="sectionHead">
+            <div>
+              <p className="eyebrow">SHOP</p>
+              <h2 className="h2">$40 Bundle. Shipping included.</h2>
+              <p className="sublead">
+                Pick any 4 boxes, or 1 of each flavour. Same price. No surprises.
+              </p>
+            </div>
 
-.heroCard{
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.55);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  position:relative;
-}
-.heroImg{ width:100%; aspect-ratio: 4/3; object-fit:cover; }
-.heroGlow{
-  position:absolute; inset:-70px;
-  background: radial-gradient(circle at 30% 20%, rgba(244,162,97,.35), transparent 58%);
-  mix-blend-mode: multiply;
-  pointerEvents:none;
-  animation: floatGlow 7s ease-in-out infinite;
-}
-@keyframes floatGlow{
-  0%,100%{ transform: translate(0,0); opacity:.9; }
-  50%{ transform: translate(14px,-10px); opacity:.7; }
-}
+            <div className="priceCard">
+              <div className="price">$40</div>
+              <div className="small muted">All-in (shipping included)</div>
+            </div>
+          </div>
 
-.heroMiniGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:12px;
-}
-.mini{
-  border-radius:18px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.74);
-  padding:14px;
-  box-shadow:0 14px 28px rgba(0,0,0,.06);
-}
-.mini h4{ margin:0; font-size:13px; font-weight:1000; }
-.mini p{ margin:6px 0 0; font-size:13px; color:var(--muted); line-height:1.5; }
+          <div className="grid">
+            {products.map((p) => (
+              <div className="product" key={p.name}>
+                <div className="productTop">
+                  <div className="productName">{p.name}</div>
+                  <div className="badge">{p.badge}</div>
+                </div>
+                <div className="productDesc">{p.desc}</div>
+                <a className="btnGhost full" href="#checkout">
+                  Add to Bundle (placeholder)
+                </a>
+              </div>
+            ))}
+          </div>
 
-/* TRUST / STATS BAR */
-.trustBar{
-  margin-top:18px;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.58);
-}
-.trustInner{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  padding:12px 0;
-  align-items:center;
-  justify-content:space-between;
-}
-.stat{
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.70);
-  font-weight:950;
-  font-size:12px;
-}
+          <div className="noteRow">
+            <div className="note">
+              <div className="noteTitle">Bundle rules</div>
+              <div className="small muted">Your box contains exactly 4 items. Mix and match any flavours.</div>
+            </div>
+            <div className="note">
+              <div className="noteTitle">Premium, but honest</div>
+              <div className="small muted">
+                Price includes ingredients, production, packaging, and logistics to your door.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-/* MARQUEE */
-.marqueeWrap{
-  margin-top:14px;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.56);
-  overflow:hidden;
-}
-.marquee{
-  display:flex; gap:26px;
-  padding:12px 0;
-  white-space:nowrap;
-  animation: marquee 20s linear infinite;
-  font-weight:1000;
-  letter-spacing:.4px;
-}
-.marquee .accent{ color:#a44f19; }
-@keyframes marquee{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-50%); }
-}
+      {/* Transparency */}
+      <section className="section alt" id="transparency">
+        <div className="container">
+          <p className="eyebrow">TRANSPARENCY</p>
+          <h2 className="h2">Simple pricing. Transparent costs.</h2>
 
-/* SECTIONS */
-.section{ padding:72px 0; }
-.sectionAlt{
-  padding:80px 0;
-  background: linear-gradient(180deg, rgba(255,243,231,.84), rgba(251,246,238,1));
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
-.sectionHead{
-  text-align:center;
-  max-width:860px;
-  margin:0 auto;
-}
-.eyebrow{
-  display:inline-flex;
-  padding:7px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.74);
-  font-size:12px;
-  font-weight:1000;
-}
-.h2{
-  margin:14px 0 0;
-  font-size: clamp(30px, 3.3vw, 46px);
-  letter-spacing:-.9px;
-  font-weight:1000;
-}
-.desc{
-  margin-top:10px;
-  color:var(--muted);
-  line-height:1.75;
-  font-size:16px;
-}
+          <div className="cards">
+            <div className="card">
+              <div className="cardTitle">What you’re paying for</div>
+              <ul className="list">
+                <li>Real ingredients</li>
+                <li>Ethical production</li>
+                <li>Packaging</li>
+                <li>Logistics to your door</li>
+              </ul>
+            </div>
 
-/* GRIDS */
-.grid4{
-  margin-top:30px;
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:14px;
-}
-.grid2{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:14px;
-  margin-top:28px;
-}
-.grid3{
-  margin-top:28px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
-}
+            <div className="card">
+              <div className="cardTitle">What you’re not paying for</div>
+              <ul className="list">
+                <li>Artificial preservatives & colours</li>
+                <li>Fillers designed to cut cost</li>
+                <li>Palm oil shortcuts</li>
+                <li>Hidden shipping markups</li>
+              </ul>
+            </div>
 
-/* CARDS */
-.card{
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.78);
-  box-shadow:var(--shadowSoft);
-  padding:14px;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.card:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 30px 68px rgba(0,0,0,.15);
-}
-.imgBox{
-  border-radius:18px;
-  border:1px solid var(--border);
-  background:#fff;
-  padding:12px;
-  aspect-ratio: 1/1;
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
-}
-.imgBox img{ width:100%; height:100%; object-fit:contain; }
-.cardTitle{ margin-top:12px; font-weight:1000; font-size:16px; }
-.cardText{ margin-top:6px; color:var(--muted); line-height:1.6; font-size:14px; }
-.cardActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-.cardBadge{
-  margin-top:10px;
-  display:inline-flex;
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,243,231,.75);
-  font-size:12px;
-  font-weight:1000;
-  color:#7a5134;
-}
+            <div className="card">
+              <div className="cardTitle">Our point of view</div>
+              <p className="small muted">
+                Additives are not for you, but for their bottom line.
+                We built Unjunked to keep ingredients simple and flavour real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-/* FEATURE */
-.feature{
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.78);
-  box-shadow:var(--shadowSoft);
-  padding:18px;
-}
-.featureTop{ display:flex; align-items:center; justify-content:space-between; }
-.badgeIcon{
-  width:38px; height:38px; border-radius:16px;
-  border:1px solid var(--border);
-  background:linear-gradient(135deg,#fff,var(--cream));
-  display:flex; align-items:center; justify-content:center;
-  font-weight:1000;
-}
-.feature h3{ margin:12px 0 0; font-size:16px; font-weight:1000; }
-.feature p{ margin:8px 0 0; color:var(--muted); line-height:1.7; }
+      {/* Founders */}
+      <section className="section" id="founders">
+        <div className="container founders">
+          <div>
+            <p className="eyebrow">FOUNDERS</p>
+            <h2 className="h2">Built by family. Ingredient-obsessed.</h2>
 
-/* PANELS */
-.panel{
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.78);
-  box-shadow:var(--shadowSoft);
-  padding:18px;
-}
-.panel h3{ margin:0; font-size:16px; font-weight:1000; }
-.panel p{ margin:10px 0 0; color:var(--muted); line-height:1.75; }
+            <p className="sublead">
+              I grew up around real food. Real ingredients. Real flavour.
+              But when I looked at most cookies on shelves today, I saw additives and fillers designed to protect margins — not people.
+            </p>
 
-.rule{
-  margin-top:14px;
-  border-radius:18px;
-  border:1px solid var(--border);
-  background:var(--cream);
-  padding:14px;
-}
-.rule small{ display:block; font-weight:1000; }
-.rule strong{ display:block; margin-top:6px; font-weight:1000; }
+            <p className="sublead">
+              Unjunked is simple. If it doesn’t belong in your kitchen, it doesn’t belong in our cookies.
+            </p>
 
-/* BUNDLE */
-.bundleBar{
-  margin-top:22px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.82);
-  box-shadow:var(--shadowSoft);
-  padding:18px;
-  display:flex;
-  gap:14px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-.bundleTitle{ font-weight:1000; }
-.bundleText{ margin-top:6px; color:var(--muted); line-height:1.6; }
-.counter{
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.72);
-  font-weight:1000;
-  font-size:12px;
-}
-.selectHint{ font-size:12px; color:var(--muted); font-weight:900; }
+            <p className="signature">— Andy Ghalley, Co-Founder & CEO</p>
+          </div>
 
-/* FOUNDERS */
-.founderBox{
-  margin-top:26px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.82);
-  box-shadow:var(--shadowSoft);
-  padding:22px;
-}
-.founderHeader{
-  display:flex; align-items:flex-start; justify-content:space-between;
-  gap:16px;
-  border-bottom:1px solid var(--border);
-  padding-bottom:14px;
-}
-.founderHeader .names{
-  font-weight:1000;
-  line-height:1.5;
-}
-.signature{ margin-top:14px; font-weight:1000; }
+          <div className="cards">
+            <div className="card">
+              <div className="cardTitle">Andy Ghalley</div>
+              <p className="small muted">Co-Founder & CEO</p>
+            </div>
+            <div className="card">
+              <div className="cardTitle">Chitwan Ghalley</div>
+              <p className="small muted">Co-Founder & President</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-/* EMAIL CTA */
-.emailBox{
-  margin-top:30px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,243,231,.92));
-  box-shadow:var(--shadowSoft);
-  padding:22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap;
-}
-.emailTitle{ font-size:20px; font-weight:1000; }
-.emailText{ margin-top:6px; color:var(--muted); line-height:1.6; }
-.emailRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-.input{
-  width:min(360px, 100%);
-  padding:12px 12px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  outline:none;
-  background:rgba(255,255,255,.9);
-  font-size:14px;
-}
-.small{ color:var(--muted); font-size:12px; line-height:1.6; }
-
-/* FOOTER */
-.footer{
-  border-top:1px solid var(--border);
-  padding:34px 0;
-}
-.footerInner{
-  display:flex; justify-content:space-between;
-  gap:18px; flex-wrap:wrap;
-}
-.footerCols{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
-  gap:18px;
-}
-.footerTitle{ font-weight:1000; }
-.footerLink{ display:block; color:var(--muted); margin-top:10px; font-weight:850; }
-.footerBottom{ margin-top:18px; color:var(--muted); font-size:12px; }
-
-/* Responsive */
-@media (max-width: 980px){
-  .heroGrid{ grid-template-columns:1fr; }
-  .grid4{ grid-template-columns: repeat(2, 1fr); }
-  .grid2{ grid-template-columns:1fr; }
-  .grid3{ grid-template-columns:1fr; }
-  .footerCols{ grid-template-columns:1fr; }
-}
-@media (max-width: 520px){
-  .navLinks{ display:none; }
+      <footer className="footer">
+        <div className="container footerInner">
+          <div className="brand">Un<span className="leaf">•</span>Junked</div>
+          <div className="small muted">© {new Date().getFullYear()} Unjunked</div>
+        </div>
+      </footer>
+    </>
+  );
 }
