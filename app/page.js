@@ -1,149 +1,210 @@
-"use client";
-
-import { useMemo, useState } from "react";
-
-export default function Page() {
-import { useMemo, useState } from "react";
-
 export default function Page() {
   return (
     <main id="top">
-      <Header />
-      <Hero />
-      <Bundle />
-      <Footer />
-    </main>
-  );
-}
+      <header className="header">
+        <div className="container headerInner">
+          <div className="brand">Unjunked</div>
 
-/* ---------------- HEADER ---------------- */
-function Header() {
-  return (
-    <header className="header">
-      <div className="container headerInner">
-        <div className="brand">Unjunked</div>
+          <nav className="nav">
+            <a href="#shop">Shop</a>
+            <a href="#ingredients">Transparency</a>
+            <a href="#founders">Founders</a>
+          </nav>
 
-        <nav className="nav">
-          <a href="#shop">Shop</a>
-        </nav>
-
-        <a className="btnPrimary" href="#shop">
-          Shop $40 Bundle
-        </a>
-      </div>
-    </header>
-  );
-}
-
-/* ---------------- HERO ---------------- */
-function Hero() {
-  return (
-    <section className="container section">
-      <div className="heroCard">
-        <div className="heroMedia">
-          <img className="heroImg" src="/hero.jpg" alt="Unjunked hero" />
-          <div className="heroOverlay" />
+          <a className="btnPrimary" href="#shop">
+            Shop $40 Bundle
+          </a>
         </div>
+      </header>
 
-        <div className="heroContent">
-          <h1 className="h1">Reinventing Cookies — Without the Junk.</h1>
-          <p className="lead">
-            Premium Indian-inspired cookies made with real ingredients.
-            Small batch. Shipping included.
-          </p>
+      <section className="container section">
+        <div className="heroCard">
+          <div className="heroMedia">
+            <img className="heroImg" src="/hero.jpg" alt="Unjunked hero" />
+            <div className="heroOverlay" />
+          </div>
 
-          <div className="ctaRow">
-            <a className="btnPrimary" href="#shop">
-              Build Your $40 Box
-            </a>
+          <div className="heroContent">
+            <p className="eyebrow">PREMIUM • CLEAN LABEL • SMALL BATCH</p>
+            <h1 className="h1">Reinventing Cookies — Without the Junk.</h1>
+            <p className="lead">
+              Premium Indian-inspired cookies made with real ingredients. Small batch.
+              Shipping included.
+            </p>
+
+            <div className="ctaRow">
+              <a className="btnPrimary" href="#shop">Build Your $40 Box</a>
+              <a className="btnGhost" href="#ingredients">See Ingredients</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-/* ---------------- BUNDLE ---------------- */
-
-const PRODUCTS = [
-  { id: "p1", name: "Pistachio & Cashew", img: "/pistachio.jpg" },
-  { id: "p2", name: "Masala Chai", img: "/masala.jpg" },
-  { id: "p3", name: "Cardamom Butterscotch", img: "/cardamom.jpg" },
-  { id: "p4", name: "Mango & Saffron", img: "/mango.jpg" },
-];
-
-function Bundle() {
-  const MAX = 4;
-  const [selected, setSelected] = useState({});
-
-  const count = useMemo(
-    () => Object.values(selected).filter(Boolean).length,
-    [selected]
-  );
-
-  function toggle(id) {
-    setSelected((prev) => {
-      const next = { ...prev };
-      const isOn = !!next[id];
-
-      if (isOn) {
-        next[id] = false;
-        return next;
-      }
-
-      const current = Object.values(next).filter(Boolean).length;
-      if (current >= MAX) return prev;
-
-      next[id] = true;
-      return next;
-    });
-  }
-
-  return (
-    <section id="shop" className="container section">
-      <h2 className="h2">Build your $40 box.</h2>
-
-      <div className="grid">
-        {PRODUCTS.map((p) => {
-          const isSelected = !!selected[p.id];
-          const disabled = count >= MAX && !isSelected;
-
-          return (
-            <div key={p.id} className="card">
-              <img src={p.img} className="productImg" alt={p.name} />
-              <div className="cardTitle">{p.name}</div>
-
-              <button
-                className={`btn ${isSelected ? "btnDark" : ""}`}
-                disabled={disabled}
-                onClick={() => toggle(p.id)}
-              >
-                {isSelected ? "Added (Remove)" : "Add to Bundle"}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="checkoutBar">
-        <div>$40 — Shipping Included</div>
-        <div>{count} / {MAX} selected</div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- FOOTER ---------------- */
-function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container footerInner">
-        <div>
-          <div className="brand">Unjunked</div>
-          <div>Email: info@ghalleyholdings.com</div>
-          <div>Instagram: @unjunked.official</div>
+      <section className="container section">
+        <div className="strip">
+          <div className="stripLeft">⭐ 4.8/5 from 1,200+ customers</div>
+          <div className="stripRight">
+            <span>“Actually clean. You can taste it.”</span>
+            <span>“Not too sweet. Super premium feel.”</span>
+            <span>“Best with chai. Zero weird aftertaste.”</span>
+          </div>
         </div>
-      </div>
-    </footer>
+      </section>
+
+      <section id="founders" className="container section">
+        <div className="twoCol">
+          <div>
+            <p className="eyebrow">WHY UNJUNKED EXISTS</p>
+            <h2 className="h2">Clean ingredients shouldn’t be a luxury.</h2>
+            <p className="copy">
+              Most cookies are engineered for shelf life and margins — not people.
+              Unjunked is premium Indian-inspired flavour, small batch production, and
+              a clean label you can trust.
+            </p>
+          </div>
+
+          <div className="cards3">
+            <div className="card">
+              <div className="dot" />
+              <div>
+                <div className="cardTitle">No Palm Oil</div>
+                <div className="cardDesc">No cheap oils. No shortcuts.</div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="dot" />
+              <div>
+                <div className="cardTitle">Nothing Artificial</div>
+                <div className="cardDesc">No artificial preservatives or colours.</div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="dot" />
+              <div>
+                <div className="cardTitle">Whole Grain Goodness</div>
+                <div className="cardDesc">Whole wheat flour for depth and bite.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="shop" className="container section">
+        <div className="bundleHead">
+          <div>
+            <p className="eyebrow">PRODUCT BUNDLE BUILDER</p>
+            <h2 className="h2">Build your $40 box.</h2>
+            <p className="copy">
+              Choose any 4 flavours. Premium ingredients, small batch, shipping included.
+            </p>
+          </div>
+
+          <div className="counter">
+            <span>Bundle</span>
+            <b>0 / 4</b>
+          </div>
+        </div>
+
+        <div className="grid4">
+          <div className="product">
+            <div className="media">
+              <img className="productImg" src="/pistachio.jpg" alt="Pistachio & Cashew" />
+            </div>
+            <div className="productTop">
+              <div className="productName">Pistachio & Cashew</div>
+              <div className="badge">300g</div>
+            </div>
+            <div className="productDesc">Creamy nut duo. Smooth finish.</div>
+            <button className="btn">Add to Bundle</button>
+          </div>
+
+          <div className="product">
+            <div className="media">
+              <img className="productImg" src="/masala.jpg" alt="Masala Chai" />
+            </div>
+            <div className="productTop">
+              <div className="productName">Masala Chai</div>
+              <div className="badge">300g</div>
+            </div>
+            <div className="productDesc">Warm spices. Comfort crunch.</div>
+            <button className="btn">Add to Bundle</button>
+          </div>
+
+          <div className="product">
+            <div className="media">
+              <img className="productImg" src="/cardamom.jpg" alt="Cardamom Butterscotch" />
+            </div>
+            <div className="productTop">
+              <div className="productName">Cardamom Butterscotch</div>
+              <div className="badge">300g</div>
+            </div>
+            <div className="productDesc">Butterscotch depth + cardamom lift.</div>
+            <button className="btn">Add to Bundle</button>
+          </div>
+
+          <div className="product">
+            <div className="media">
+              <img className="productImg" src="/mango.jpg" alt="Mango & Saffron" />
+            </div>
+            <div className="productTop">
+              <div className="productName">Mango & Saffron</div>
+              <div className="badge">300g</div>
+            </div>
+            <div className="productDesc">Alphonso mango + real saffron aroma.</div>
+            <button className="btn">Add to Bundle</button>
+          </div>
+        </div>
+
+        <div className="stickyBar">
+          <div>
+            <div className="stickyTitle">$40 — Shipping Included</div>
+            <div className="stickySub">Checkout unlocks at 4 selected</div>
+          </div>
+          <button className="btn btnDisabled" disabled>Checkout</button>
+        </div>
+      </section>
+
+      <section id="ingredients" className="container section">
+        <p className="eyebrow">INGREDIENT TRANSPARENCY</p>
+        <h2 className="h2">Real ingredients. No filler logic.</h2>
+
+        <div className="grid5">
+          {[
+            ["Alphonso Mango", "Bright, real fruit flavour."],
+            ["Real Saffron", "Aromatic depth."],
+            ["Stone-ground Cardamom", "Fresh lift."],
+            ["Whole Wheat Flour", "Whole grain texture."],
+            ["Premium Butter", "Rich body."],
+          ].map(([t, d]) => (
+            <div className="mini" key={t}>
+              <div className="dot" />
+              <div className="cardTitle">{t}</div>
+              <div className="cardDesc">{d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="container footerInner">
+          <div>
+            <div className="brand">Unjunked</div>
+            <div className="footLine">Email: <a href="mailto:info@ghalleyholdings.com">info@ghalleyholdings.com</a></div>
+            <div className="footLine">Instagram: <a href="https://instagram.com/unjunked.official" target="_blank" rel="noreferrer">@unjunked.official</a></div>
+          </div>
+
+          <div className="footLinks">
+            <a href="#shop">Shop</a>
+            <a href="#ingredients">Transparency</a>
+            <a href="#founders">Founders</a>
+            <a href="#wholesale">Wholesale</a>
+            <a href="#terms">Terms</a>
+            <a href="#refund">Refund Policy</a>
+          </div>
+        </div>
+
+        <div className="container footCopy">© {new Date().getFullYear()} Unjunked</div>
+      </footer>
+    </main>
   );
 }
