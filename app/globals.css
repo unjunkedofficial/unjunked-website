@@ -1,211 +1,226 @@
-export default function Page() {
-  const products = [
-    {
-      name: "Pistachio & Cashew Cookies",
-      desc: "Creamy smooth and perfectly balanced. The classic nut duo.",
-      badge: "300g",
-    },
-    {
-      name: "Masala Chai Cookies",
-      desc: "A warm hug of spices with the perfect crunch. Made with real chai spices.",
-      badge: "300g",
-    },
-    {
-      name: "Cardamom Butterscotch Cookies (with Almonds)",
-      desc: "Butterscotch meets bold cardamom. Pure nutty delight.",
-      badge: "300g",
-    },
-    {
-      name: "Mango & Saffron Cookies",
-      desc: "Crafted with Alphonso mango & real saffron. Creamy, rich, vibrant.",
-      badge: "300g",
-    },
-  ];
+:root{
+  --bg:#0b0b0c;
+  --alt:#0f1012;
+  --card:#101113;
+  --text:#f5f5f7;
+  --muted:#a7a7ad;
+  --line:rgba(255,255,255,.12);
+  --radius:18px;
+  --shadow: 0 12px 50px rgba(0,0,0,.45);
+}
 
-  return (
-    <>
-      {/* Header */}
-      <header className="header">
-        <div className="container headerInner">
-          <div className="brand">Un<span className="leaf">•</span>Junked</div>
+*{box-sizing:border-box}
+html,body{padding:0;margin:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,.06), transparent 60%),
+              radial-gradient(900px 650px at 90% 20%, rgba(255,255,255,.05), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
 
-          <nav className="nav">
-            <a href="#shop">Shop</a>
-            <a href="#transparency">Transparency</a>
-            <a href="#founders">Founders</a>
-          </nav>
+a{color:inherit;text-decoration:none}
+.site{min-height:100vh}
 
-          <a className="btnPrimary" href="#shop">Shop $40 Bundle</a>
-        </div>
-      </header>
+.container{width:min(1120px, 92vw);margin:0 auto}
 
-      {/* Hero */}
-      <section className="hero">
-        <div className="container heroGrid">
-          <div>
-            <p className="eyebrow">GLOBAL FLAVOURS, ZERO JUNK</p>
-            <h1 className="h1">
-              Reinventing Cookies — <span className="muted">Without the Junk.</span>
-            </h1>
-            <p className="lead">
-              Premium Indian-inspired cookies made with real ingredients.
-              No palm oil. No artificial preservatives or colours. Whole wheat flour. Eggless.
-            </p>
+.header{
+  position:sticky; top:0; z-index:30;
+  background: rgba(11,11,12,.7);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.headerInner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0;
+  gap:16px;
+}
 
-            <div className="ctaRow">
-              <a className="btnPrimary" href="#shop">Build your $40 box</a>
-              <a className="btnGhost" href="#transparency">See transparency</a>
-            </div>
+.brand{font-weight:800; letter-spacing:-.03em}
+.leaf{opacity:.85}
 
-            <div className="trustRow">
-              <div className="pill">Shipping included</div>
-              <div className="pill">Transparent pricing</div>
-              <div className="pill">Real ingredients</div>
-            </div>
-          </div>
+.nav{display:flex; gap:18px}
+.nav a{font-size:14px; color:var(--muted); padding:10px 6px}
+.nav a:hover{color:var(--text)}
 
-          <div className="card">
-            <div className="cardTitle">The Unjunked Promise</div>
-            <ul className="list">
-              <li>Eggless</li>
-              <li>No palm oil</li>
-              <li>Nothing artificial</li>
-              <li>Whole grain goodness</li>
-              <li>Handmade with love</li>
-            </ul>
-            <div className="divider" />
-            <p className="small muted">
-              Additives are not for you — they’re for shelf life and bottom lines.
-              We keep it clean, because you deserve better.
-            </p>
-          </div>
-        </div>
-      </section>
+.btnPrimary, .btnGhost{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:14px;
+  border:1px solid var(--line);
+  transition: transform .12s ease, border-color .12s ease;
+}
+.btnPrimary{
+  background:#fff;
+  color:#0b0b0c;
+  border-color:transparent;
+}
+.btnGhost{
+  background: rgba(255,255,255,.03);
+  color:var(--text);
+}
+.btnPrimary:hover, .btnGhost:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.20)}
+.full{width:100%}
 
-      {/* Shop */}
-      <section className="section" id="shop">
-        <div className="container">
-          <div className="sectionHead">
-            <div>
-              <p className="eyebrow">SHOP</p>
-              <h2 className="h2">$40 Bundle. Shipping included.</h2>
-              <p className="sublead">
-                Pick any 4 boxes, or 1 of each flavour. Same price. No surprises.
-              </p>
-            </div>
+.hero{padding:64px 0 24px}
+.heroGrid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:24px;
+  align-items:start;
+}
 
-            <div className="priceCard">
-              <div className="price">$40</div>
-              <div className="small muted">All-in (shipping included)</div>
-            </div>
-          </div>
+.eyebrow{
+  margin:0 0 10px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:11px;
+  color:var(--muted);
+}
+.h1{
+  margin:0 0 14px;
+  font-size:52px;
+  letter-spacing:-.04em;
+}
+.h2{
+  margin:0 0 10px;
+  font-size:34px;
+  letter-spacing:-.03em;
+}
+.lead{
+  margin:0;
+  font-size:16px;
+  color:rgba(245,245,247,.92);
+  max-width:60ch;
+}
+.sublead{
+  margin:0 0 12px;
+  color:rgba(245,245,247,.85);
+  max-width:72ch;
+}
+.muted{color:var(--muted)}
+.small{font-size:13px}
 
-          <div className="grid">
-            {products.map((p) => (
-              <div className="product" key={p.name}>
-                <div className="productTop">
-                  <div className="productName">{p.name}</div>
-                  <div className="badge">{p.badge}</div>
-                </div>
-                <div className="productDesc">{p.desc}</div>
-                <a className="btnGhost full" href="#checkout">
-                  Add to Bundle (placeholder)
-                </a>
-              </div>
-            ))}
-          </div>
+.ctaRow{display:flex; gap:10px; margin:22px 0 16px; flex-wrap:wrap}
+.trustRow{display:flex; gap:10px; flex-wrap:wrap}
 
-          <div className="noteRow">
-            <div className="note">
-              <div className="noteTitle">Bundle rules</div>
-              <div className="small muted">Your box contains exactly 4 items. Mix and match any flavours.</div>
-            </div>
-            <div className="note">
-              <div className="noteTitle">Premium, but honest</div>
-              <div className="small muted">
-                Price includes ingredients, production, packaging, and logistics to your door.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+.pill{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 12px;
+  background: rgba(255,255,255,.02);
+  color:var(--muted);
+  font-size:13px;
+}
 
-      {/* Transparency */}
-      <section className="section alt" id="transparency">
-        <div className="container">
-          <p className="eyebrow">TRANSPARENCY</p>
-          <h2 className="h2">Simple pricing. Transparent costs.</h2>
+.section{padding:54px 0}
+.alt{background: rgba(255,255,255,.02); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 
-          <div className="cards">
-            <div className="card">
-              <div className="cardTitle">What you’re paying for</div>
-              <ul className="list">
-                <li>Real ingredients</li>
-                <li>Ethical production</li>
-                <li>Packaging</li>
-                <li>Logistics to your door</li>
-              </ul>
-            </div>
+.sectionHead{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:18px;
+  margin-bottom:18px;
+}
 
-            <div className="card">
-              <div className="cardTitle">What you’re not paying for</div>
-              <ul className="list">
-                <li>Artificial preservatives & colours</li>
-                <li>Fillers designed to cut cost</li>
-                <li>Palm oil shortcuts</li>
-                <li>Hidden shipping markups</li>
-              </ul>
-            </div>
+.priceCard{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:12px 14px;
+  background: rgba(255,255,255,.02);
+  text-align:right;
+  min-width:220px;
+}
+.price{font-weight:900; font-size:22px}
 
-            <div className="card">
-              <div className="cardTitle">Our point of view</div>
-              <p className="small muted">
-                Additives are not for you, but for their bottom line.
-                We built Unjunked to keep ingredients simple and flavour real.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:14px;
+}
 
-      {/* Founders */}
-      <section className="section" id="founders">
-        <div className="container founders">
-          <div>
-            <p className="eyebrow">FOUNDERS</p>
-            <h2 className="h2">Built by family. Ingredient-obsessed.</h2>
+.product{
+  border:1px solid var(--line);
+  border-radius: 24px;
+  padding:16px;
+  background: rgba(255,255,255,.03);
+  box-shadow: var(--shadow);
+}
+.productTop{
+  display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
+}
+.productName{font-weight:700; letter-spacing:-.02em}
+.productDesc{margin:10px 0 14px; color:rgba(245,245,247,.85); font-size:13px; line-height:1.35}
+.badge{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:11px;
+  color:rgba(245,245,247,.9);
+  background: rgba(255,255,255,.02);
+  white-space:nowrap;
+}
 
-            <p className="sublead">
-              I grew up around real food. Real ingredients. Real flavour.
-              But when I looked at most cookies on shelves today, I saw additives and fillers designed to protect margins — not people.
-            </p>
+.card{
+  border:1px solid var(--line);
+  border-radius: 28px;
+  padding:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+}
+.cardTitle{font-weight:800; margin-bottom:10px}
+.list{margin:0; padding-left:18px; color:rgba(245,245,247,.9)}
+.list li{margin:8px 0}
+.divider{height:1px; background: var(--line); margin:14px 0}
 
-            <p className="sublead">
-              Unjunked is simple. If it doesn’t belong in your kitchen, it doesn’t belong in our cookies.
-            </p>
+.cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:14px;
+  margin-top:16px;
+}
 
-            <p className="signature">— Andy Ghalley, Co-Founder & CEO</p>
-          </div>
+.noteRow{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:16px;
+}
+.note{
+  border:1px solid var(--line);
+  border-radius: 24px;
+  padding:16px;
+  background: rgba(255,255,255,.02);
+}
+.noteTitle{font-weight:800; margin-bottom:8px}
 
-          <div className="cards">
-            <div className="card">
-              <div className="cardTitle">Andy Ghalley</div>
-              <p className="small muted">Co-Founder & CEO</p>
-            </div>
-            <div className="card">
-              <div className="cardTitle">Chitwan Ghalley</div>
-              <p className="small muted">Co-Founder & President</p>
-            </div>
-          </div>
-        </div>
-      </section>
+.founders{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:14px;
+  align-items:start;
+}
+.signature{margin-top:14px; font-weight:700}
 
-      <footer className="footer">
-        <div className="container footerInner">
-          <div className="brand">Un<span className="leaf">•</span>Junked</div>
-          <div className="small muted">© {new Date().getFullYear()} Unjunked</div>
-        </div>
-      </footer>
-    </>
-  );
+.footer{
+  padding:28px 0 36px;
+  border-top:1px solid var(--line);
+}
+.footerInner{
+  display:flex; justify-content:space-between; align-items:center;
+}
+
+@media (max-width: 980px){
+  .heroGrid{grid-template-columns:1fr}
+  .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+  .cards{grid-template-columns:1fr}
+  .founders{grid-template-columns:1fr}
+  .sectionHead{flex-direction:column; align-items:flex-start}
+  .priceCard{text-align:left}
+  .h1{font-size:42px}
+}
+@media (max-width: 560px){
+  .nav{display:none}
+  .grid{grid-template-columns:1fr}
+  .noteRow{grid-template-columns:1fr}
 }
