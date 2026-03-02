@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Unjunked",
-  description: "Clean snacks, done right.",
+  description: "Clean cookies. Big flavour. Zero junk.",
 };
 
 export default function RootLayout({ children }) {
