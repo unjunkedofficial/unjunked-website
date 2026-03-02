@@ -1,3 +1,5 @@
+import { SITE } from "./config";
+
 export default function Page() {
   const products = [
     {
@@ -30,14 +32,16 @@ export default function Page() {
     },
   ];
 
+  const checkoutHref = SITE.shopifyCheckoutUrl || "#";
+
   return (
     <>
       {/* Header */}
       <header className="header">
         <div className="container headerInner">
-          <div className="brand">
-            Un<span className="leaf">•</span>Junked
-          </div>
+          <a className="brand" href="#top" aria-label="Unjunked Home">
+            <img src="/logo.jpeg" alt="Unjunked logo" className="headerLogo" />
+          </a>
 
           <nav className="nav">
             <a href="#shop">Shop</a>
@@ -52,14 +56,17 @@ export default function Page() {
       </header>
 
       {/* Hero */}
-      <section className="hero">
+      <section className="hero" id="top">
         <div className="container heroGrid">
           <div>
+            <img src="/logo.jpeg" alt="Unjunked logo" className="heroLogo" />
             <p className="eyebrow">GLOBAL FLAVOURS, ZERO JUNK</p>
+
             <h1 className="h1">
               Reinventing Cookies —{" "}
               <span className="muted">Without the Junk.</span>
             </h1>
+
             <p className="lead">
               Premium Indian-inspired cookies made with real ingredients. No palm
               oil. No artificial preservatives or colours. Whole wheat flour.
@@ -93,8 +100,8 @@ export default function Page() {
             </ul>
             <div className="divider" />
             <p className="small muted">
-              Additives are not for you — they’re for shelf life and bottom
-              lines. We keep it clean, because you deserve better.
+              Additives are not for you — they’re for shelf life and bottom lines.
+              We keep it clean, because you deserve better.
             </p>
           </div>
         </div>
@@ -154,6 +161,26 @@ export default function Page() {
               </div>
             </div>
           </div>
+
+          {/* Shopify-ready checkout bar */}
+          <div className="checkoutBar" id="checkout">
+            <div>
+              <div className="checkoutTitle">Checkout</div>
+              <div className="small muted">
+                When ready, connect Shopify by pasting your checkout URL in{" "}
+                <strong>app/config.js</strong>. Everything stays clean and transparent.
+              </div>
+            </div>
+
+            <a
+              className="btnPrimary"
+              href={checkoutHref}
+              target={SITE.shopifyCheckoutUrl ? "_blank" : undefined}
+              rel={SITE.shopifyCheckoutUrl ? "noreferrer" : undefined}
+            >
+              {SITE.shopifyCheckoutUrl ? "Go to Checkout" : "Connect Shopify"}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -187,8 +214,8 @@ export default function Page() {
             <div className="card">
               <div className="cardTitle">Our point of view</div>
               <p className="small muted">
-                Additives are not for you, but for their bottom line. We built
-                Unjunked to keep ingredients simple and flavour real.
+                Additives are not for you, but for their bottom line.
+                We built Unjunked to keep ingredients simple and flavour real.
               </p>
             </div>
           </div>
@@ -203,14 +230,14 @@ export default function Page() {
             <h2 className="h2">Built by family. Ingredient-obsessed.</h2>
 
             <p className="sublead">
-              I grew up around real food. Real ingredients. Real flavour. But
-              when I looked at most cookies on shelves today, I saw additives
-              and fillers designed to protect margins — not people.
+              I grew up around real food. Real ingredients. Real flavour. But when I
+              looked at most cookies on shelves today, I saw additives and fillers
+              designed to protect margins — not people.
             </p>
 
             <p className="sublead">
-              Unjunked is simple. If it doesn’t belong in your kitchen, it
-              doesn’t belong in our cookies.
+              Unjunked is simple. If it doesn’t belong in your kitchen, it doesn’t
+              belong in our cookies.
             </p>
 
             <p className="signature">— Andy Ghalley, Co-Founder & CEO</p>
@@ -234,21 +261,15 @@ export default function Page() {
         <div className="container footerInner">
           <div>
             <div className="brand">
-              Un<span className="leaf">•</span>Junked
+              <img src="/logo.jpeg" alt="Unjunked logo" className="footerLogo" />
             </div>
             <div className="small muted">
               Contact:{" "}
-              <a href="mailto:info@ghalleyholdings.com">
-                info@ghalleyholdings.com
-              </a>
+              <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
             </div>
             <div className="small muted">
               Instagram:{" "}
-              <a
-                href="https://instagram.com/unjunked.official"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={SITE.instagramUrl} target="_blank" rel="noreferrer">
                 @unjunked.official
               </a>
             </div>
