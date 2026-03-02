@@ -1,17 +1,15 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Unjunked — Premium Indian-inspired cookies",
+  title: "Unjunked — Global Flavours, Zero Junk",
   description:
-    "Reinventing Cookies — Without the Junk. Premium Indian-inspired cookies made with real ingredients. Small batch. Shipping included.",
+    "Premium Indian-inspired cookies made with real ingredients. Small batch. Shipping included.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-dvh bg-white text-zinc-950 antialiased">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
