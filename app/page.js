@@ -1,29 +1,33 @@
-// app/page.js
+"use client";
+
+import { useMemo, useState } from "react";
 
 const EMAIL = "info@ghalleyholdings.com";
 
-/**
- * Images expected in /public:
- * hero.jpeg  (you currently have hero.jpeg)
- * mango.jpg
- * masala.jpg
- * cardamom.jpg
- * cashew.jpg
- */
-const products = [
+// Product facts
+const UNIT_SIZE = "300g";
+const BUNDLE_PRICE = 30; // $30 pick 3
+
+// Images expected in /public:
+// hero.jpeg
+// mango.jpg
+// masala.jpg
+// cardamom.jpg
+// cashew.jpg
+const PRODUCTS = [
   {
     id: "mango-saffron",
     name: "Mango Saffron",
     oneLiner: "Bright mango with a saffron finish. Clean and addictive.",
     image: "/mango.jpg",
-    badge: "Best-seller energy",
+    badge: "Fan favourite",
   },
   {
     id: "masala-chai",
     name: "Masala Chai",
     oneLiner: "Warm chai spice, bakery-style bite. Cozy but premium.",
     image: "/masala.jpg",
-    badge: "Chai lovers",
+    badge: "Chai energy",
   },
   {
     id: "cardamom-butterscotch",
@@ -42,6 +46,32 @@ const products = [
 ];
 
 export default function Page() {
+  const [selected, setSelected] = useState([]); // array of product ids
+
+  const selectedProducts = useMemo(
+    () => PRODUCTS.filter((p) => selected.includes(p.id)),
+    [selected]
+  );
+
+  const canAddMore = selected.length < 3;
+
+  function togglePick(id) {
+    setSelected((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= 3) return prev; // max 3
+      return [...prev, id];
+    });
+  }
+
+  const mailto = useMemo(() => {
+    const picks = selectedProducts.map((p) => p.name).join(", ") || "Not selected yet";
+    const subject = encodeURIComponent("Unjunked Cookies — Pick 3 Order");
+    const body = encodeURIComponent(
+      `Hi Unjunked team,\n\nI’d like to order the Pick 3 bundle ($${BUNDLE_PRICE}).\n\nPicks: ${picks}\nSize: ${UNIT_SIZE} each\n\nName:\nPhone:\nCity/Postal Code:\n\nThanks!`
+    );
+    return `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+  }, [selectedProducts]);
+
   return (
     <main>
       {/* NAV */}
@@ -58,14 +88,14 @@ export default function Page() {
           <div className="navLinks">
             <a href="#promise">Promise</a>
             <a href="#products">Flavours</a>
-            <a href="#why">Why</a>
+            <a href="#bundle">Pick 3</a>
+            <a href="#whyprice">Why $30</a>
             <a href="#founders">Founders</a>
-            <a href="#retail">Retail</a>
           </div>
 
           <div className="navCtas">
             <a className="btn btnGhost" href="#products">See the line</a>
-            <a className="btn btnPrimary" href="#retail">Shop now</a>
+            <a className="btn btnPrimary" href="#bundle">Build your Pick 3</a>
           </div>
         </div>
       </div>
@@ -75,33 +105,37 @@ export default function Page() {
         <div className="container">
           <div className="heroGrid">
             <div>
-              <div className="kicker">
+              <div className="chip kicker">
                 <span className="dot" />
-                Snacks. Unjunked.
+                Small-batch cookies • Always fresh
               </div>
 
               <h1 className="h1">
-                Real ingredients.
+                Clean cookies.
                 <br />
-                No fillers.
+                Big flavour.
                 <br />
-                No nonsense.
+                Zero junk.
               </h1>
 
               <p className="sub">
-                Ingredient lists shouldn’t read like chemistry textbooks.
-                Unjunked keeps it simple — and keeps the flavour.
+                We make Unjunked in small batches so it stays fresh every single time.
+                Premium ingredients. Premium flavour. No filler ingredients.
               </p>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>
-                <a className="btn btnPrimary" href="#retail">Shop now</a>
-                <a className="btn btnGhost" href="#promise">Our promise</a>
+                <a className="btn btnPrimary" href="#bundle">
+                  Pick 3 for ${BUNDLE_PRICE}
+                </a>
+                <a className="btn btnGhost" href="#products">
+                  Explore flavours
+                </a>
               </div>
 
               <div className="pills">
-                <span className="pill">No artificial anything</span>
-                <span className="pill">Real ingredients</span>
-                <span className="pill">Global flavours</span>
+                <span className="pill">{UNIT_SIZE} each</span>
+                <span className="pill">Small-batch production</span>
+                <span className="pill">Quality ingredients + logistics included</span>
               </div>
             </div>
 
@@ -113,35 +147,50 @@ export default function Page() {
 
               <div className="heroMiniGrid">
                 <div className="mini">
-                  <h4>What we don’t use</h4>
-                  <p>Artificial flavours, preservatives, filler ingredients.</p>
+                  <h4>Made fresh</h4>
+                  <p>Small batches so every box feels just-made.</p>
                 </div>
                 <div className="mini">
-                  <h4>What you get</h4>
-                  <p>A short clean list and a cookie that still hits.</p>
+                  <h4>Premium by design</h4>
+                  <p>Quality inputs cost more. The taste shows it.</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Marquee */}
-        <div className="marqueeWrap">
-          <div className="marquee">
-            <span>ZERO JUNK</span>
-            <span className="accent">REAL INGREDIENTS</span>
-            <span>PREMIUM TASTE</span>
-            <span className="accent">GLOBAL FLAVOURS</span>
-            <span>BUILT FOR SHELF</span>
-            <span className="accent">MADE FOR HOMES</span>
+          {/* Trust bar like IM8 vibe */}
+          <div className="trustBar">
+            <div className="container trustInner">
+              <div className="trustLeft">
+                <span className="stat">Pick 3 • ${BUNDLE_PRICE}</span>
+                <span className="stat">{UNIT_SIZE} each</span>
+                <span className="stat">Small batch</span>
+                <span className="stat">Always fresh</span>
+              </div>
+              <div className="trustRight">
+                <a className="btn btnGhost" href={`mailto:${EMAIL}?subject=Unjunked%20Cookies%20Question`}>Questions</a>
+                <a className="btn btnPrimary" href="#bundle">Build your box</a>
+              </div>
+            </div>
+          </div>
 
-            {/* repeat to make the loop seamless */}
-            <span>ZERO JUNK</span>
-            <span className="accent">REAL INGREDIENTS</span>
-            <span>PREMIUM TASTE</span>
-            <span className="accent">GLOBAL FLAVOURS</span>
-            <span>BUILT FOR SHELF</span>
-            <span className="accent">MADE FOR HOMES</span>
+          {/* Marquee */}
+          <div className="marqueeWrap">
+            <div className="marquee">
+              <span>SMALL BATCH</span>
+              <span className="accent">MADE FRESH</span>
+              <span>REAL INGREDIENTS</span>
+              <span className="accent">ZERO JUNK</span>
+              <span>PREMIUM FLAVOURS</span>
+              <span className="accent">{UNIT_SIZE} EACH</span>
+
+              <span>SMALL BATCH</span>
+              <span className="accent">MADE FRESH</span>
+              <span>REAL INGREDIENTS</span>
+              <span className="accent">ZERO JUNK</span>
+              <span>PREMIUM FLAVOURS</span>
+              <span className="accent">{UNIT_SIZE} EACH</span>
+            </div>
           </div>
         </div>
       </section>
@@ -153,242 +202,4 @@ export default function Page() {
             <div className="eyebrow">Our promise</div>
             <div className="h2">Clean label — actually clean.</div>
             <div className="desc">
-              Premium taste, modern packaging, and ingredient lists you can defend — in one glance.
-            </div>
-          </div>
-
-          <div className="grid3">
-            <div className="feature">
-              <div className="featureTop">
-                <div className="badgeIcon">✓</div>
-                <div className="eyebrow">No artificial</div>
-              </div>
-              <h3>No artificial anything</h3>
-              <p>No artificial flavours, colours, or preservatives. Just real food decisions.</p>
-            </div>
-
-            <div className="feature">
-              <div className="featureTop">
-                <div className="badgeIcon">✓</div>
-                <div className="eyebrow">Transparency</div>
-              </div>
-              <h3>Real ingredients</h3>
-              <p>Short lists you can stand behind — made for ingredient-conscious households.</p>
-            </div>
-
-            <div className="feature">
-              <div className="featureTop">
-                <div className="badgeIcon">✓</div>
-                <div className="eyebrow">Flavour</div>
-              </div>
-              <h3>Flavor without compromise</h3>
-              <p>Global flavour profiles that feel premium — not “healthy and sad”.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PRODUCTS */}
-      <section id="products" className="sectionAlt">
-        <div className="container">
-          <div className="sectionHead">
-            <div className="eyebrow">The line</div>
-            <div className="h2">Four flavours. One standard.</div>
-            <div className="desc">If it doesn’t make the ingredient list better, it doesn’t go in.</div>
-          </div>
-
-          <div className="grid4">
-            {products.map((p) => (
-              <div className="card" key={p.id}>
-                <div className="imgBox">
-                  <img src={p.image} alt={p.name} />
-                </div>
-                <div className="cardTitle">{p.name}</div>
-                <div className="cardText">{p.oneLiner}</div>
-
-                <div className="cardActions">
-                  <a className="btn btnPrimary" href="#retail" style={{ padding: "10px 12px", borderRadius: 14, fontSize: 13 }}>
-                    View details
-                  </a>
-                  <a className="btn btnGhost" href="#retail" style={{ padding: "10px 12px", borderRadius: 14, fontSize: 13 }}>
-                    Shop
-                  </a>
-                </div>
-
-                <div style={{ marginTop: 10, color: "#7a6f66", fontWeight: 900, fontSize: 12 }}>
-                  {p.badge}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY */}
-      <section id="why" className="section">
-        <div className="container">
-          <div className="sectionHead">
-            <div className="eyebrow">Why Unjunked</div>
-            <div className="h2">Because most snacks hide the junk.</div>
-            <div className="desc">We built Unjunked to be the opposite: transparent, clean, and premium.</div>
-          </div>
-
-          <div className="grid2">
-            <div className="panel">
-              <h3>The problem</h3>
-              <p>Most snacks lean on artificial flavours, preservatives, and filler ingredients to imitate taste.</p>
-              <p>That’s why ingredient lists often read like chemistry textbooks.</p>
-              <div className="rule">
-                <small>Unjunked rule</small>
-                <strong>If you can’t pronounce it, we don’t use it.</strong>
-              </div>
-            </div>
-
-            <div className="panel">
-              <h3>The upgrade</h3>
-              <p>Short lists. Real ingredients. Premium taste. Modern packaging. Built for scale.</p>
-              <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
-                <div className="pill">Short lists</div>
-                <div className="pill">Ingredient transparency</div>
-                <div className="pill">Premium flavour profiles</div>
-                <div className="pill">Retail-ready design</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOUNDERS */}
-      <section id="founders" className="sectionAlt">
-        <div className="container">
-          <div className="sectionHead">
-            <div className="eyebrow">Founders</div>
-            <div className="h2">Built by people who care what goes inside.</div>
-            <div className="desc">Not a marketing angle — a real standard we hold ourselves to.</div>
-          </div>
-
-          <div className="founderBox">
-            <div className="founderHeader">
-              <div className="names">
-                Andy Ghalley — CEO & Co-Founder
-                <br />
-                Chitwan Ghalley — Co-Founder & President
-              </div>
-              <a className="btn btnGhost" href={`mailto:${EMAIL}?subject=Unjunked%20Inquiry`}>
-                Contact us
-              </a>
-            </div>
-
-            <div style={{ marginTop: 14, color: "var(--muted)", lineHeight: 1.8 }}>
-              <p>
-                Unjunked started with a simple frustration: why do so many everyday snacks hide behind long ingredient lists
-                and unnecessary additives?
-              </p>
-              <p>
-                As founders, we wanted snacks we’d confidently bring into our own home — made with real ingredients, without
-                artificial fillers, and without compromising on flavour.
-              </p>
-              <p>
-                What began as a conversation around clean labels became a commitment. Every Unjunked product reflects our belief
-                that transparency matters, taste matters, and simplicity wins.
-              </p>
-              <p>
-                We’re building Unjunked as a long-term brand — one that earns trust on shelf and in households across North America.
-              </p>
-              <div className="signature">— Andy & Chitwan</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* RETAIL */}
-      <section id="retail" className="section">
-        <div className="container">
-          <div className="sectionHead">
-            <div className="eyebrow">Retail</div>
-            <div className="h2">Designed to win on shelf.</div>
-            <div className="desc">Retail credibility + clean ingredient story = repeat purchase.</div>
-          </div>
-
-          <div className="grid2">
-            <div className="panel">
-              <h3>Available at select retailers</h3>
-              <p>Add your retailer logos here (or “coming soon”). Keep them monochrome for premium feel.</p>
-
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginTop: 14 }}>
-                <div className="pill" style={{ textAlign: "center" }}>Retailer</div>
-                <div className="pill" style={{ textAlign: "center" }}>Retailer</div>
-                <div className="pill" style={{ textAlign: "center" }}>Retailer</div>
-              </div>
-            </div>
-
-            <div className="panel">
-              <h3>Wholesale inquiry</h3>
-              <p>Region, store count, timeline — we respond fast.</p>
-
-              <div className="form">
-                <input className="input" placeholder="Name" />
-                <input className="input" placeholder="Company" />
-                <input className="input" placeholder="Email" />
-                <input className="input" placeholder="Message (region, stores, timeline)" />
-                <a className="btn btnPrimary" href={`mailto:${EMAIL}?subject=Unjunked%20Wholesale%20Inquiry`} style={{ textAlign: "center" }}>
-                  Email us
-                </a>
-                <div className="small">Direct: {EMAIL}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="emailBox">
-            <div>
-              <div className="emailTitle">Join the Unjunked Movement.</div>
-              <div className="emailText">Drops, updates, and early access. No spam.</div>
-            </div>
-
-            <div className="emailRow">
-              <input className="input" placeholder="Email" />
-              <a className="btn btnPrimary" href={`mailto:${EMAIL}?subject=Unjunked%20Newsletter%20Signup`}>
-                Join
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="footer">
-        <div className="container footerInner">
-          <div>
-            <div style={{ fontWeight: 980 }}>Unjunked</div>
-            <div style={{ color: "var(--muted)", marginTop: 6 }}>Clean snacks, done right.</div>
-            <div style={{ marginTop: 10 }}>
-              <a className="btn btnGhost" href={`mailto:${EMAIL}`}>info@ghalleyholdings.com</a>
-            </div>
-          </div>
-
-          <div className="footerCols">
-            <div>
-              <div className="footerTitle">Explore</div>
-              <a className="footerLink" href="#products">Flavours</a>
-              <a className="footerLink" href="#promise">Promise</a>
-              <a className="footerLink" href="#why">Why</a>
-            </div>
-            <div>
-              <div className="footerTitle">Company</div>
-              <a className="footerLink" href="#founders">Founders</a>
-              <a className="footerLink" href="#retail">Wholesale</a>
-            </div>
-            <div>
-              <div className="footerTitle">Contact</div>
-              <a className="footerLink" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            </div>
-          </div>
-        </div>
-
-        <div className="container footerBottom">
-          © {new Date().getFullYear()} Unjunked. All rights reserved.
-        </div>
-      </footer>
-    </main>
-  );
-}
+              Ingredients you can stand behind.
