@@ -1,15 +1,20 @@
 import "./globals.css";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Unjunked — Global Flavours, Zero Junk",
+export const metadata: Metadata = {
+  title: "Unjunked — Premium Indian-inspired cookies",
   description:
-    "Premium cookies made with real ingredients. No palm oil. No artificial preservatives or colours. Whole wheat flour. Eggless.",
+    "Reinventing Cookies — Without the Junk. Premium Indian-inspired cookies made with real ingredients. Small batch. Shipping included.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-dvh bg-white text-zinc-950 antialiased">
+        {children}
+      </body>
     </html>
   );
 }
